@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useRef } from 'react'
+import gsap from 'gsap'
+import {useGSAP} from '@gsap/react'
+const App = () => {
 
-function App() {
-  const [count, setCount] = useState(0)
+ const boxRef =  useRef()
+  useGSAP(()=>{
+    gsap.from(".box",{
+      rotate:360,
+      duration:1,
+      delay:0.5,
+      scale:0,
+      opacity:0,
 
+    },{
+      scope:".container",
+    })
+
+  })
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main>
+      {/* <div ref ={gsapRef} className="box">
+
+      </div> */}
+      <div className="container">
+        <div className="circle"></div>
+        <div ref={boxRef} className="box"></div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="new">
+        <div className="circle"></div>
+        <div className="box"></div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </main>
   )
 }
 
 export default App
+
